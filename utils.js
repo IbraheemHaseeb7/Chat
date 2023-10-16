@@ -34,9 +34,11 @@ export async function uploadImage(uri, path, fName) {
     });
   
     const fileName = fName || nanoid();
-    const imageRef = ref(storage, `${path}/${fileName}`);
+    const imageRef = ref(storage, `${path}/${fileName}.jpeg`);
   
-    const snapshot = await uploadBytes(imageRef, blob);
+    const snapshot = await uploadBytes(imageRef, blob, {
+      contentType: "image/jpeg",
+    });
   
     blob.close();
   
